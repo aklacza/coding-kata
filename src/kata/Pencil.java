@@ -9,6 +9,7 @@ public class Pencil {
     public int length;
     public int pointDurability;
     public int eraserDurability;
+    public String stringWritten = "";
 
     public Pencil(int length, int pointDurability, int eraserDurability) {
         this.length = length;
@@ -46,7 +47,9 @@ public class Pencil {
             }
         }
         this.pointDurability -= ((countUpperCase * 2) + (countLowerCase));
-
+        
+        this.stringWritten += text;
+        
         return text;
     }
 
@@ -74,4 +77,14 @@ public class Pencil {
         this.eraserDurability = eraserDurability;
     }
 
+    public String getStringWritten() {
+        return stringWritten;
+    }
+
+    public void setStringWritten(String stringWritten) {
+        this.stringWritten = stringWritten;
+    }
+
+    
+    
 }

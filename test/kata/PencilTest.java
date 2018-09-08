@@ -73,5 +73,18 @@ public class PencilTest {
         assertEquals(9968, pencil.getPointDurability());
         
     }
+    
+
+    @Test
+    public void testingWritingMultipleStrings(){
+        String inputString1 =  "The swallows fly";
+        String inputString2 = " at midnight";
+        
+        pencil.write(inputString1);
+        pencil.write(inputString2);
+        
+        assertEquals("The swallows fly at midnight", pencil.getStringWritten());
+        
+    }
 
 }
