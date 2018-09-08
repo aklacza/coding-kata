@@ -90,10 +90,19 @@ public class PencilTest {
     @Test
     public void testingStopWritingWhenPointDurabilityIsZero(){
         pencil.setPointDurability(10);
+        String inputString = "The cicadas";
+        pencil.write(inputString);
+        
+        assertEquals("The cicada ", pencil.getStringWritten());
+    }
+    
+    @Test
+    public void testingStopWritingWhenPointDurabilityIsZeroButStillWriteSpaces(){
+        pencil.setPointDurability(10);
         String inputString = "The cicadas sing at night";
         pencil.write(inputString);
         
-        assertEquals("The cicada", pencil.getStringWritten());
+        assertEquals("The cicada               ", pencil.getStringWritten());
     }
 
 }

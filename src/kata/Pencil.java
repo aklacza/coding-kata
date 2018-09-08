@@ -26,31 +26,28 @@ public class Pencil {
 
     public String write(String text) {
 
-        //iterates through string to count number of capital letters
-        //and lower case letters
-        int countUpperCase = 0;
-        int countLowerCase = 0;
-        int countSymbols = 0;
-
+        //iterate through text string one character at a time
         for (int x = 0; x < text.length(); x++) {
-            //first check to see if the character is a space
-            //then check to see if it's a capital
-            //if it's not a capital, it could be a number or a symbol, which also
-            //decrease one from pointDurability
-            //if pointDurability allows 
+
+            //check for space
             if (!Character.isSpaceChar(text.charAt(x))) {
+                //check for capital, then pointDurability 
                 if (Character.isUpperCase(text.charAt(x))) {
                     if (this.pointDurability > 1) {
+                        //write character and decrement pointDurability
                         this.stringWritten += text.charAt(x);
                         this.pointDurability -= 2;
                     }
+                 //if pointDurability has reached zero, still write a space
                 } else if (this.pointDurability > 0) {
-                    countLowerCase++;
+                    //write character and decrement pointDurability
                     this.stringWritten += text.charAt(x);
                     this.pointDurability -= 1;
+                } else if(this.pointDurability == 0){
+                    this.stringWritten += " ";
                 }
 
-            }else if(this.pointDurability > 0){
+            }else {
                 this.stringWritten += text.charAt(x);
             }
         }
