@@ -137,13 +137,21 @@ public class PencilTest {
         assertEquals(true, pencil.stringWritten.contains(toErase));
     }
     
+    //this test was deprecated by the next
+//    @Test
+//    public void testingErasingStringFromWritingAndLeavingOneSpaceInstead(){
+//        pencil.write("The first noble truth is that life is suffering.");
+//        pencil.erase("suffering");
+//        //if only it were that easy
+//        
+//        assertEquals("The first noble truth is that life is  .", pencil.getStringWritten());
+//    }
+    
     @Test
-    public void testingErasingStringFromWritingAndLeavingOneSpaceInstead(){
-        pencil.write("The first noble truth is that life is suffering.");
-        pencil.erase("suffering");
-        //if only it were that easy
-        
-        assertEquals("The first noble truth is that life is  .", pencil.getStringWritten());
+    public void testingErasingStringAndLeavingSpacesEqualToLengthOfErasedWord(){
+        pencil.write("The second noble truth is that suffering is caused by desire.");
+        pencil.erase("desire");
+        assertEquals("The second noble truth is that suffering is caused by       .", pencil.getStringWritten());
     }
 
 }

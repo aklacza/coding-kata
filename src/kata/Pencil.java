@@ -66,9 +66,15 @@ public class Pencil {
     }
 
     public void erase(String stringToErase) {
+        int sizeOfErasure = stringToErase.length();
+        String stringOfSpaces = "";
+        for (int x = 0; x < sizeOfErasure; x++) {
+            stringOfSpaces = stringOfSpaces.concat(" ");
+        }
+
         if (this.stringWritten.contains(stringToErase)) {
-            
-            this.setStringWritten(stringWritten.replaceAll(stringToErase, " "));
+
+            this.setStringWritten(stringWritten.replaceAll(stringToErase, stringOfSpaces));
         }
     }
 
