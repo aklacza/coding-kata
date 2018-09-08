@@ -66,19 +66,18 @@ public class Pencil {
     }
 
     public void erase(String stringToErase) {
-        int sizeOfErasure = stringToErase.length();
 
-        if (sizeOfErasure < this.getEraserDurability()) {
-            String stringOfSpaces = "";
-            for (int x = 0; x < sizeOfErasure; x++) {
-                stringOfSpaces = stringOfSpaces.concat(" ");
-            }
+        int stringToEraseLength = stringToErase.length();
+        StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
 
-            if (this.stringWritten.contains(stringToErase)) {
-
-                this.setStringWritten(stringWritten.replaceAll(stringToErase, stringOfSpaces));
+        if (this.stringWritten.contains(stringToErase)) {
+            int indexOfEraseStart = this.stringWritten.lastIndexOf(stringToErase) + stringToEraseLength - 1;
+            for (int x = indexOfEraseStart; x > (indexOfEraseStart - stringToEraseLength); x--) {
+                newStringWritten.setCharAt(x, ' ');
             }
         }
+        
+        this.setStringWritten(newStringWritten.toString());
 
     }
 

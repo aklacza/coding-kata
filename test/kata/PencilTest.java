@@ -155,14 +155,14 @@ public class PencilTest {
     }
     
     @Test
-    public void testingEraserDurabilityEraseFailsIfEraseIsTooBig(){
+    public void testingEraserDurabilityEraseStartsFromRight(){
         String text = "The third noble truth is that there is an end to suffering.";
         pencil.write(text);
-        pencil.setEraserDurability(5);
-        pencil.erase("suffering.");
+        pencil.erase("is");
         
-        assertEquals(text, pencil.getStringWritten());
+        assertEquals("The third noble truth is that there    an end to suffering.", pencil.getStringWritten());
         
     }
+    
 
 }
