@@ -58,6 +58,7 @@ public class Pencil {
     }
     
     public void sharpen(){
+        this.length--;
         this.setPointDurability(maxPointDurability);
     }
 

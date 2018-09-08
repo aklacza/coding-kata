@@ -111,5 +111,11 @@ public class PencilTest {
         pencil.sharpen();
         assertEquals(10000, pencil.getPointDurability());
     }
+    
+    @Test
+    public void testingLengthDecreaseWhenSharpening(){
+        pencil.sharpen();
+        assertEquals(9, pencil.getLength());
+    }
 
 }
