@@ -25,8 +25,37 @@ public class Pencil {
     }
     
     public String write(String text){
+        //counts number of characters and decreases point durability
+        int numberOfCharacters = text.length();
+        this.pointDurability -= numberOfCharacters;
         return text;
     }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getPointDurability() {
+        return pointDurability;
+    }
+
+    public int getEraserDurability() {
+        return eraserDurability;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public void setPointDurability(int pointDurability) {
+        this.pointDurability = pointDurability;
+    }
+
+    public void setEraserDurability(int eraserDurability) {
+        this.eraserDurability = eraserDurability;
+    }
+    
+    
 }
 
 

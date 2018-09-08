@@ -37,5 +37,14 @@ public class PencilTest {
         
         assertEquals(inputString, pencil.write(inputString));
     }
+    
+    @Test
+    public void testingPointDurabilityDecreaseWhenWriting(){
+        String inputString = "this_string_is_33_characters_long";
+        pencil.write(inputString);
+        
+        assertEquals(9967, pencil.getPointDurability());
+        
+    }
 
 }
