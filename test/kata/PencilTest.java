@@ -117,5 +117,15 @@ public class PencilTest {
         pencil.sharpen();
         assertEquals(9, pencil.getLength());
     }
+    
+    @Test
+    public void testingPencilDurabilityShouldNotBeRestoredIfLengthIsZero(){
+        pencil.setPointDurability(60);
+        pencil.write("This pencil is short!");
+        pencil.setLength(0);
+        pencil.sharpen();
+        assertEquals(41, pencil.getPointDurability());
+        
+    }
 
 }

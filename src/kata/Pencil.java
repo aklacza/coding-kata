@@ -40,26 +40,29 @@ public class Pencil {
                         this.stringWritten += text.charAt(x);
                         this.pointDurability -= 2;
                     }
-                 //if pointDurability has reached zero, still write a space
+                    //if pointDurability has reached zero, still write a space
                 } else if (this.pointDurability > 0) {
                     //write character and decrement pointDurability
                     this.stringWritten += text.charAt(x);
                     this.pointDurability -= 1;
-                } else if(this.pointDurability == 0){
+                } else if (this.pointDurability == 0) {
                     this.stringWritten += " ";
                 }
 
-            }else {
+            } else {
                 this.stringWritten += text.charAt(x);
             }
         }
 
         return text;
     }
-    
-    public void sharpen(){
-        this.length--;
-        this.setPointDurability(maxPointDurability);
+
+    public void sharpen() {
+        if (this.length > 0) {
+            this.length--;
+            this.setPointDurability(maxPointDurability);
+        }
+
     }
 
     public int getLength() {
@@ -101,7 +104,5 @@ public class Pencil {
     public void setMaxPointDurability(int maxPointDurability) {
         this.maxPointDurability = maxPointDurability;
     }
-    
-    
 
 }
