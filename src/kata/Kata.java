@@ -7,7 +7,7 @@ public class Kata {
 
     public static void main(String[] args) {
         System.out.println("Hello world!!");
-        Pencil pencil = new Pencil(10, 10000, 1000);
+        Pencil pencil = new Pencil(10, 10000, 10000, 1000);
         String pencilToString = pencil.toString();
         System.out.println(pencilToString);
         pencil.setPointDurability(10);

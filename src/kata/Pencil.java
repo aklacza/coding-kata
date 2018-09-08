@@ -8,12 +8,14 @@ public class Pencil {
 
     public int length;
     public int pointDurability;
+    public int maxPointDurability;
     public int eraserDurability;
     public String stringWritten = "";
 
-    public Pencil(int length, int pointDurability, int eraserDurability) {
+    public Pencil(int length, int pointDurability, int maxPointDurability, int eraserDurability) {
         this.length = length;
         this.pointDurability = pointDurability;
+        this.maxPointDurability = maxPointDurability;
         this.eraserDurability = eraserDurability;
     }
 
@@ -54,6 +56,10 @@ public class Pencil {
 
         return text;
     }
+    
+    public void sharpen(){
+        this.setPointDurability(maxPointDurability);
+    }
 
     public int getLength() {
         return length;
@@ -86,5 +92,15 @@ public class Pencil {
     public void setStringWritten(String stringWritten) {
         this.stringWritten = stringWritten;
     }
+
+    public int getMaxPointDurability() {
+        return maxPointDurability;
+    }
+
+    public void setMaxPointDurability(int maxPointDurability) {
+        this.maxPointDurability = maxPointDurability;
+    }
+    
+    
 
 }

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class PencilTest {
 
     //initialize a pencil to test
-    Pencil pencil = new Pencil(10, 10000, 1000);
+    Pencil pencil = new Pencil(10, 10000, 10000, 1000);
 
     public PencilTest() {
     }
@@ -103,6 +103,13 @@ public class PencilTest {
         pencil.write(inputString);
         
         assertEquals("The cicada               ", pencil.getStringWritten());
+    }
+    
+    @Test
+    public void testingWritingThenSharpeningThePencil(){
+        pencil.write("The sky is a wonderful shade of blue!");
+        pencil.sharpen();
+        assertEquals(10000, pencil.getPointDurability());
     }
 
 }
