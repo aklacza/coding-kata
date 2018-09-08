@@ -70,14 +70,15 @@ public class Pencil {
         int stringToEraseLength = stringToErase.length();
         StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
 
-        if (this.stringWritten.contains(stringToErase)) {
+        while (newStringWritten.toString().contains(stringToErase)) {
             int indexOfEraseStart = this.stringWritten.lastIndexOf(stringToErase) + stringToEraseLength - 1;
             for (int x = indexOfEraseStart; x > (indexOfEraseStart - stringToEraseLength); x--) {
                 newStringWritten.setCharAt(x, ' ');
+                this.setStringWritten(newStringWritten.toString());
             }
         }
         
-        this.setStringWritten(newStringWritten.toString());
+        
 
     }
 

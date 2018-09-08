@@ -153,16 +153,26 @@ public class PencilTest {
         pencil.erase("desire");
         assertEquals("The second noble truth is that suffering is caused by       .", pencil.getStringWritten());
     }
+   
+    //deprecated as additional funcationality added
+//    @Test
+//    public void testingEraserStartsFromRight(){
+//        String text = "The third noble truth is that there is an end to suffering.";
+//        pencil.write(text);
+//        pencil.erase("is");
+//        
+//        assertEquals("The third noble truth is that there    an end to suffering.", pencil.getStringWritten());
+//        
+//    }
     
     @Test
-    public void testingEraserDurabilityEraseStartsFromRight(){
+    public void testingEraserEraseStartsFromRightAndFindsAllInstancesOfWordToErase(){
         String text = "The third noble truth is that there is an end to suffering.";
         pencil.write(text);
         pencil.erase("is");
         
-        assertEquals("The third noble truth is that there    an end to suffering.", pencil.getStringWritten());
+        assertEquals("The third noble truth    that there    an end to suffering.", pencil.getStringWritten());
         
     }
-    
 
 }
