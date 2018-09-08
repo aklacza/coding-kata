@@ -132,8 +132,9 @@ public class PencilTest {
     @Test
     public void testingCheckingIfWhatIsWrittenContainsAString(){
         pencil.write("Yoga is the calming of the fluctuations of the mind.");
+        String toErase = "mind";
         
-        assertEquals(true, pencil.erase("mind"));
+        assertEquals(true, pencil.stringWritten.contains(toErase));
     }
     
     
