@@ -55,5 +55,14 @@ public class PencilTest {
         assertEquals(9995, pencil.getPointDurability());
         
     }
+    
+    @Test
+    public void testingPointDurabilityWithSpaces(){
+        String inputString = "This string has spaces";
+        pencil.write(inputString);
+        
+        assertEquals(9980, pencil.getPointDurability());
+        
+    }
 
 }
