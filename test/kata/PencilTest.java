@@ -46,5 +46,14 @@ public class PencilTest {
         assertEquals(9967, pencil.getPointDurability());
         
     }
+    
+    @Test
+    public void testingPointDurabilityDecreaseWhenWritingCapitalAndLowerCase(){
+        String inputString = "This";
+        pencil.write(inputString);
+        
+        assertEquals(9995, pencil.getPointDurability());
+        
+    }
 
 }

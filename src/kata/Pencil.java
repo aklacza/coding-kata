@@ -25,9 +25,23 @@ public class Pencil {
     }
     
     public String write(String text){
-        //counts number of characters and decreases point durability
-        int numberOfCharacters = text.length();
-        this.pointDurability -= numberOfCharacters;
+
+        //iterates through string to count number of capital letters
+        //and lower case letters
+        int countUpperCase = 0;
+        int countLowerCase = 0;
+        
+        for(int x = 0; x<text.length(); x++){
+            if(Character.isUpperCase(text.charAt(x))){
+                countUpperCase++;
+            }
+            if(Character.isLowerCase(text.charAt(x))){
+                countLowerCase++;
+            }
+        }
+        this.pointDurability -= ((countUpperCase *2 ) + (countLowerCase));
+
+        
         return text;
     }
 
