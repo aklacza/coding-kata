@@ -127,5 +127,15 @@ public class PencilTest {
         assertEquals(41, pencil.getPointDurability());
         
     }
+    
+    //first step toward erasing
+    @Test
+    public void testingCheckingIfWhatIsWrittenContainsAString(){
+        pencil.write("Yoga is the calming of the fluctuations of the mind.");
+        
+        assertEquals(true, pencil.erase("mind"));
+    }
+    
+    
 
 }
