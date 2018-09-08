@@ -37,19 +37,24 @@ public class Pencil {
             //then check to see if it's a capital
             //if it's not a capital, it could be a number or a symbol, which also
             //decrease one from pointDurability
+            //if pointDurability allows 
             if (!Character.isSpaceChar(text.charAt(x))) {
                 if (Character.isUpperCase(text.charAt(x))) {
-                    countUpperCase++;
-                } else {
+                    if (this.pointDurability > 1) {
+                        this.stringWritten += text.charAt(x);
+                        this.pointDurability -= 2;
+                    }
+                } else if (this.pointDurability > 0) {
                     countLowerCase++;
+                    this.stringWritten += text.charAt(x);
+                    this.pointDurability -= 1;
                 }
 
+            }else if(this.pointDurability > 0){
+                this.stringWritten += text.charAt(x);
             }
         }
-        this.pointDurability -= ((countUpperCase * 2) + (countLowerCase));
-        
-        this.stringWritten += text;
-        
+
         return text;
     }
 
@@ -85,6 +90,4 @@ public class Pencil {
         this.stringWritten = stringWritten;
     }
 
-    
-    
 }

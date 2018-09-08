@@ -86,5 +86,14 @@ public class PencilTest {
         assertEquals("The swallows fly at midnight", pencil.getStringWritten());
         
     }
+    
+    @Test
+    public void testingStopWritingWhenPointDurabilityIsZero(){
+        pencil.setPointDurability(10);
+        String inputString = "The cicadas sing at night";
+        pencil.write(inputString);
+        
+        assertEquals("The cicada", pencil.getStringWritten());
+    }
 
 }
