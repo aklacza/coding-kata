@@ -23,6 +23,10 @@ public class Pencil {
                 + ", point durability: " + pointDurability 
                 + ", eraser durability: " + eraserDurability;
     }
+    
+    public String write(String text){
+        return text;
+    }
 }
 
 
