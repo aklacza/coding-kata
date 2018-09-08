@@ -137,6 +137,13 @@ public class PencilTest {
         assertEquals(true, pencil.stringWritten.contains(toErase));
     }
     
-    
+    @Test
+    public void testingErasingStringFromWritingAndLeavingOneSpaceInstead(){
+        pencil.write("The first noble truth is that life is suffering.");
+        pencil.erase("suffering");
+        //if only it were that easy
+        
+        assertEquals("The first noble truth is that life is  .", pencil.getStringWritten());
+    }
 
 }

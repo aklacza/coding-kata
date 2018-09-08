@@ -64,9 +64,12 @@ public class Pencil {
         }
 
     }
-    
-    public void erase(String stringToErase){
-        
+
+    public void erase(String stringToErase) {
+        if (this.stringWritten.contains(stringToErase)) {
+            
+            this.setStringWritten(stringWritten.replaceAll(stringToErase, " "));
+        }
     }
 
     public int getLength() {
