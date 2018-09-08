@@ -153,5 +153,16 @@ public class PencilTest {
         pencil.erase("desire");
         assertEquals("The second noble truth is that suffering is caused by       .", pencil.getStringWritten());
     }
+    
+    @Test
+    public void testingEraserDurabilityEraseFailsIfEraseIsTooBig(){
+        String text = "The third noble truth is that there is an end to suffering.";
+        pencil.write(text);
+        pencil.setEraserDurability(5);
+        pencil.erase("suffering.");
+        
+        assertEquals(text, pencil.getStringWritten());
+        
+    }
 
 }
