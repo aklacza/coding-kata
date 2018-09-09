@@ -185,5 +185,15 @@ public class PencilTest {
         assertEquals("The fourth noble truth is that there is a path to end suffering: the Eightfold Path.", pencil.getStringWritten());
     }
     
+    @Test
+    public void testingEraserShouldStopWorkingWhenDurabilityIsZero(){
+        String text = "There once was a man from Nantucket";
+        pencil.setEraserDurability(6);
+        pencil.write(text);
+        pencil.erase("Nantucket");
+        
+        assertEquals("There once was a man from Nan      ", pencil.getStringWritten());
+    }
+    
     
 }
