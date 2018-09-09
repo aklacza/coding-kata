@@ -175,5 +175,15 @@ public class PencilTest {
         
     }
     
-
+    @Test
+    public void testingEraserDurabilityEraserShouldStopWorkingWhenDurabilityIsZero(){
+        String text = "The fourth noble truth is that there is a path to end suffering: the Eightfold Path.";
+        pencil.write(text);
+        pencil.setEraserDurability(0);
+        pencil.erase("is");
+        
+        assertEquals("The fourth noble truth is that there is a path to end suffering: the Eightfold Path.", pencil.getStringWritten());
+    }
+    
+    
 }

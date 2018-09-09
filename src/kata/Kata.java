@@ -10,9 +10,13 @@ public class Kata {
         Pencil pencil = new Pencil(10, 10000, 10000, 1000);
         String pencilToString = pencil.toString();
         System.out.println(pencilToString);
-        pencil.setPointDurability(10);
+        pencil.setPointDurability(100);
         pencil.write("The cicadas sing");
         System.out.println(pencil.getStringWritten());
+        pencil.erase("sing");
+        //pencil.setEraserDurability(1);
+        System.out.println(pencil.getStringWritten());
+        System.out.println("durability main: " + pencil.eraserDurability);
     }
 
 }
