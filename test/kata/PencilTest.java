@@ -166,7 +166,7 @@ public class PencilTest {
 //    }
     
     @Test
-    public void testingEraserEraseStartsFromRightAndFindsAllInstancesOfWordToErase(){
+    public void testingEraseStartsFromRightAndFindsAllInstancesOfWordToErase(){
         String text = "The third noble truth is that there is an end to suffering.";
         pencil.write(text);
         pencil.erase("is");
@@ -174,5 +174,6 @@ public class PencilTest {
         assertEquals("The third noble truth    that there    an end to suffering.", pencil.getStringWritten());
         
     }
+    
 
 }
