@@ -11,6 +11,7 @@ public class Pencil {
     public int maxPointDurability;
     public int eraserDurability;
     public String stringWritten = "";
+    public boolean eraserUsed;
 
     public Pencil(int length, int pointDurability, int maxPointDurability, int eraserDurability) {
         this.length = length;
@@ -91,6 +92,7 @@ public class Pencil {
                     newStringWritten.setCharAt(x, ' ');
                     this.setStringWritten(newStringWritten.toString());
                     this.setEraserDurability(this.getEraserDurability() -1 );
+                    this.setEraserUsed(true);
                 }
 
             }
@@ -138,4 +140,14 @@ public class Pencil {
         this.maxPointDurability = maxPointDurability;
     }
 
+    public boolean isEraserUsed() {
+        return eraserUsed;
+    }
+
+    public void setEraserUsed(boolean eraserUsed) {
+        this.eraserUsed = eraserUsed;
+    }
+
+    
+    
 }

@@ -195,5 +195,13 @@ public class PencilTest {
         assertEquals("There once was a man from Nan      ", pencil.getStringWritten());
     }
     
+    @Test
+    public void testingNewBooleanIfErased(){
+        pencil.write("foo bar");
+        pencil.erase("bar");
+        
+        assertEquals(true, pencil.isEraserUsed());
+    }
+    
     
 }
