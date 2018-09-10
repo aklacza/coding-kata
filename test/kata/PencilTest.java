@@ -208,11 +208,21 @@ public class PencilTest {
     public void testingInsertingOneLetterWithEditFunction(){
         pencil.write("abc");
         pencil.erase("c");
-        pencil.edit('d', 2);
+        pencil.edit("d", 2);
         //first letter in StringBuilder is index 0
         
         assertEquals("abd", pencil.getStringWritten());
     }
+    
+    @Test
+    public void testingInsertingStringWithEditFunction(){
+        pencil.write("abcd");
+        pencil.erase("cd");
+        pencil.edit("ef", 2);
+        
+        assertEquals("abef", pencil.getStringWritten());
+    }
+    
     
     
 }

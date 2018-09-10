@@ -68,14 +68,13 @@ public class Pencil {
 
     public void erase(String stringToErase) {
 
-        
         int stringToEraseLength = stringToErase.length();
         StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
-        
+
         //tries to erase while there are still instances of the word to erase
         while (newStringWritten.toString().contains(stringToErase)) {
-            
-            if(eraserDurability == 0){
+
+            if (eraserDurability == 0) {
                 break;
             }
             //finds the right most instance of the word
@@ -87,19 +86,25 @@ public class Pencil {
                 if (this.eraserDurability > 0) {
                     newStringWritten.setCharAt(x, ' ');
                     this.setStringWritten(newStringWritten.toString());
-                    this.setEraserDurability(this.getEraserDurability() -1 );
+                    this.setEraserDurability(this.getEraserDurability() - 1);
                     this.setEraserUsed(true);
                 }
             }
         }
     }
-    
-    public void edit(char charToInsert, int position){
-        if(this.isEraserUsed()){
+
+    public void edit(String stringToInsert, int position) {
+        if (this.isEraserUsed()) {
+
             StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
+            StringBuilder stringToInsertBuilder = new StringBuilder(stringToInsert);
             
-            newStringWritten.setCharAt(position, charToInsert);
-            this.setStringWritten(newStringWritten.toString());
+            //iterates through both StringBuilders to insert edit
+            for (int x = position; x < (position + stringToInsert.length()); x++) {
+                newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
+                this.setStringWritten(newStringWritten.toString());
+
+            }
         }
     }
 
@@ -151,6 +156,4 @@ public class Pencil {
         this.eraserUsed = eraserUsed;
     }
 
-    
-    
 }
