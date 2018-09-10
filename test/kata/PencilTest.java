@@ -204,7 +204,15 @@ public class PencilTest {
         assertEquals(true, pencil.isEraserUsed());
     }
     
-    
+    @Test
+    public void testingInsertingOneLetterWithEditFunction(){
+        pencil.write("abc");
+        pencil.erase("c");
+        pencil.edit('d', 2);
+        //first letter in StringBuilder is index 0
+        
+        assertEquals("abd", pencil.getStringWritten());
+    }
     
     
 }

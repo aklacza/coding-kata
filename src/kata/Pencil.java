@@ -72,9 +72,6 @@ public class Pencil {
         int stringToEraseLength = stringToErase.length();
         StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
         
-        System.out.println("stringToErase.length(): " + stringToErase.length());
-        System.out.println("newStringWritten: " + newStringWritten);
-        
         //tries to erase while there are still instances of the word to erase
         while (newStringWritten.toString().contains(stringToErase)) {
             
@@ -87,17 +84,23 @@ public class Pencil {
             for (int x = indexOfEraseStart; x > (indexOfEraseStart - stringToEraseLength); x--) {
                 //checks eraserDurability and erases if it is not zero
                 //also decrements the durability
-                System.out.println("durability: " + this.eraserDurability);
                 if (this.eraserDurability > 0) {
                     newStringWritten.setCharAt(x, ' ');
                     this.setStringWritten(newStringWritten.toString());
                     this.setEraserDurability(this.getEraserDurability() -1 );
                     this.setEraserUsed(true);
                 }
-
             }
         }
-
+    }
+    
+    public void edit(char charToInsert, int position){
+        if(this.isEraserUsed()){
+            StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
+            
+            newStringWritten.setCharAt(position, charToInsert);
+            this.setStringWritten(newStringWritten.toString());
+        }
     }
 
     public int getLength() {
