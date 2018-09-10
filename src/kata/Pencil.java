@@ -107,14 +107,22 @@ public class Pencil {
             //iterates through both StringBuilders to insert edit
             for (int x = position; x < (position + stringToInsert.length()); x++) {
 
-                //checks if character is a space or null
-                if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
-                    newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
-                    this.setStringWritten(newStringWritten.toString());
-                } else { //writes a @ if it has a value
-                    newStringWritten.setCharAt(x, '@');
-                    this.setStringWritten(newStringWritten.toString());
-                }
+                //checks if pencil has pointDurability to write with
+                
+                    //checks if character is a space or null
+                    if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
+                        //replaces the blank with a letter
+                        newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
+                        this.setStringWritten(newStringWritten.toString());
+                        this.pointDurability--;
+                        
+                    } else if(newStringWritten.charAt(x) == stringToInsertBuilder.charAt(x - position)){
+                        //do nothing if the character is the same
+                    } else{ //writes a @ if it has a different value
+                        newStringWritten.setCharAt(x, '@');
+                        this.setStringWritten(newStringWritten.toString());
+                        this.pointDurability--;
+                    }
 
             }
         }

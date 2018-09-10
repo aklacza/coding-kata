@@ -228,14 +228,33 @@ public class PencilTest {
 
         assertEquals("abefghij", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingEditOverExistingCharacters(){
+    public void testingEditOverExistingCharacters() {
         pencil.write("abcde");
         pencil.erase("cd");
         pencil.edit("CDE", 2);
 
         assertEquals("abCD@", pencil.getStringWritten());
+    }
+
+    @Test
+    public void tesingEditOverSameCharacterShouldNotChangeCharacter() {
+        pencil.write("abcde");
+        pencil.erase("cd");
+        pencil.edit("CDe", 2);
+
+        assertEquals("abCDe", pencil.getStringWritten());
+    }
+
+    @Test
+    public void testingEditShouldDecreasePointDurability() {
+        pencil.setPointDurability(10);
+        pencil.write("abcdef");
+        pencil.erase("de");
+        pencil.edit("def", 3);
+
+        assertEquals(2, pencil.pointDurability);
     }
 
 }
