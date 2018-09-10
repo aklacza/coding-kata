@@ -256,5 +256,25 @@ public class PencilTest {
 
         assertEquals(2, pencil.pointDurability);
     }
-
+    
+    @Test
+    public void testingShouldNotBeAbleToEditIfPencilDurabilityIsZero(){
+        pencil.setPointDurability(8);
+        pencil.write("abcdef");
+        pencil.erase("def");
+        pencil.edit("def", 3);
+        
+        assertEquals("abcde ", pencil.getStringWritten());
+    }
+    
+    @Test
+    public void testingEditShouldDecreaseeDurabilityByTwoWhenWritingCapitalsEvenWhenWritingOverALetter(){
+        pencil.setPointDurability(12);
+        pencil.write("abcdef");
+        pencil.erase("de");
+        pencil.edit("D$F", 3);
+        
+        assertEquals("abcD$@", pencil.getStringWritten());
+        assertEquals(1, pencil.getPointDurability());
+    }
 }

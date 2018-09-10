@@ -108,21 +108,44 @@ public class Pencil {
             for (int x = position; x < (position + stringToInsert.length()); x++) {
 
                 //checks if pencil has pointDurability to write with
-                
-                    //checks if character is a space or null
-                    if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
-                        //replaces the blank with a letter
+                //checks if character is a space or null
+                if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
+                    
+                    //replaces the blank with a blank
+                    if(stringToInsertBuilder.charAt(x-position) == ' '){
+                        newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
+                        this.setStringWritten(newStringWritten.toString());
+                        
+                        //writes upper case, decreases point durability by 2
+                    }else if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x-position))) {
+                        newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
+                        this.setStringWritten(newStringWritten.toString());
+                        this.pointDurability-=2;
+                        
+                        //writes lower case and symbols , decreases point durability by 1
+                    }else if (this.getPointDurability() > 0 ) {
                         newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
                         this.setStringWritten(newStringWritten.toString());
                         this.pointDurability--;
+                    }
+                    
+
+                    //do nothing if the character is the same
+                } else if (newStringWritten.charAt(x) == stringToInsertBuilder.charAt(x - position)) {
+                    //do nothing
+                } else { //writes a @ if it has a different value
+                    if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x-position))) {
+                        newStringWritten.setCharAt(x, '@');
+                        this.setStringWritten(newStringWritten.toString());
+                        this.pointDurability-=2;
                         
-                    } else if(newStringWritten.charAt(x) == stringToInsertBuilder.charAt(x - position)){
-                        //do nothing if the character is the same
-                    } else{ //writes a @ if it has a different value
+                        //replaces lower case, decreases point durability by 1
+                    }else if (this.getPointDurability() > 0 && Character.isLowerCase(stringToInsertBuilder.charAt(x-position))) {
                         newStringWritten.setCharAt(x, '@');
                         this.setStringWritten(newStringWritten.toString());
                         this.pointDurability--;
                     }
+                }
 
             }
         }
