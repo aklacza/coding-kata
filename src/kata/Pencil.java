@@ -41,7 +41,7 @@ public class Pencil {
                         this.stringWritten += text.charAt(x);
                         this.pointDurability -= 2;
                     }
-                    //if pointDurability has reached zero, still write a space
+                    //if pointDurability has reached zero, still make a space
                 } else if (this.pointDurability > 0) {
                     //write character and decrement pointDurability
                     this.stringWritten += text.charAt(x);
@@ -50,7 +50,7 @@ public class Pencil {
                     this.stringWritten += " ";
                 }
 
-            } else {
+            } else { //adds a space 
                 this.stringWritten += text.charAt(x);
             }
         }
@@ -58,6 +58,7 @@ public class Pencil {
         return text;
     }
 
+    //returns pointDurability to maximum and decreases length, if length is greater than zero
     public void sharpen() {
         if (this.length > 0) {
             this.length--;
@@ -66,6 +67,7 @@ public class Pencil {
 
     }
 
+    //erases characters from end of stringWritten assuming there is enough eraser durability
     public void erase(String stringToErase) {
 
         int stringToEraseLength = stringToErase.length();
@@ -74,28 +76,36 @@ public class Pencil {
         //tries to erase while there are still instances of the word to erase
         while (newStringWritten.toString().contains(stringToErase)) {
 
+            //exits loop if eraserDurability is exhausted
             if (eraserDurability == 0) {
                 break;
             }
             //finds the right most instance of the word
+            //finds start of last occurence of the string, then adds the length of the string to erase
+            //and subtracts one to account for the zero index of StringBuilder object
             int indexOfEraseStart = this.stringWritten.lastIndexOf(stringToErase) + stringToEraseLength - 1;
             //erases the word from right to left
             for (int x = indexOfEraseStart; x > (indexOfEraseStart - stringToEraseLength); x--) {
                 //checks eraserDurability and erases if it is not zero
                 //also decrements the durability
+                //sets eraserUsed boolean as true in order to allow edits
                 if (this.eraserDurability > 0) {
                     newStringWritten.setCharAt(x, ' ');
                     this.setStringWritten(newStringWritten.toString());
                     this.setEraserDurability(this.getEraserDurability() - 1);
                     this.setEraserUsed(true);
+                    
                 }
             }
         }
     }
 
+    //allows editing of writing if there has been an erase previously performed
+    //input is new string of text and the position to begin at; index begins at zero
     public void edit(String stringToInsert, int position) {
         if (this.isEraserUsed()) {
 
+            //creates new objects to better manipulate text
             StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
             StringBuilder stringToInsertBuilder = new StringBuilder(stringToInsert);
 
@@ -107,50 +117,52 @@ public class Pencil {
             //iterates through both StringBuilders to insert edit
             for (int x = position; x < (position + stringToInsert.length()); x++) {
 
-                //checks if pencil has pointDurability to write with
                 //checks if character is a space or null
                 if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
-                    
-                    //replaces the blank with a blank
-                    if(stringToInsertBuilder.charAt(x-position) == ' '){
+
+                    //replaces a blank with a blank
+                    if (stringToInsertBuilder.charAt(x - position) == ' ') {
                         newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
                         this.setStringWritten(newStringWritten.toString());
-                        
-                        //writes upper case, decreases point durability by 2
-                    }else if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x-position))) {
+
+                        //checks point durability to write a capital letter                    
+                        //writes upper case, updates stringWritten String and decreases point durability by 2
+                    } else if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x - position))) {
                         newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
                         this.setStringWritten(newStringWritten.toString());
-                        this.pointDurability-=2;
-                        
+                        this.pointDurability -= 2;
+
+                        //checks point durability first, then
                         //writes lower case and symbols , decreases point durability by 1
-                    }else if (this.getPointDurability() > 0 ) {
+                    } else if (this.getPointDurability() > 0) {
                         newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
                         this.setStringWritten(newStringWritten.toString());
                         this.pointDurability--;
                     }
-                    
 
                     //do nothing if the character is the same
                 } else if (newStringWritten.charAt(x) == stringToInsertBuilder.charAt(x - position)) {
                     //do nothing
-                } else { //writes a @ if it has a different value
-                    if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x-position))) {
+                    //else (existing character is not a space or the same character)
+                } else { //writes a @ as symbol for writing on top of existing letter
+                    //checks durability, writes upper case, decreases durability
+                    if (this.getPointDurability() > 1 && Character.isUpperCase(stringToInsertBuilder.charAt(x - position))) {
                         newStringWritten.setCharAt(x, '@');
                         this.setStringWritten(newStringWritten.toString());
-                        this.pointDurability-=2;
-                        
-                        //replaces lower case, decreases point durability by 1
-                    }else if (this.getPointDurability() > 0 && Character.isLowerCase(stringToInsertBuilder.charAt(x-position))) {
+                        this.pointDurability -= 2;
+
+                        //checks durability, replaces lower case, decreases point durability by 1
+                    } else if (this.getPointDurability() > 0 && Character.isLowerCase(stringToInsertBuilder.charAt(x - position))) {
                         newStringWritten.setCharAt(x, '@');
                         this.setStringWritten(newStringWritten.toString());
                         this.pointDurability--;
                     }
                 }
-
             }
         }
     }
 
+    //getters and setters
     public int getLength() {
         return length;
     }
