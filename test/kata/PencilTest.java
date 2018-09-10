@@ -198,10 +198,13 @@ public class PencilTest {
     @Test
     public void testingNewBooleanIfErased(){
         pencil.write("foo bar");
+        assertEquals(false, pencil.isEraserUsed());
         pencil.erase("bar");
         
         assertEquals(true, pencil.isEraserUsed());
     }
+    
+    
     
     
 }
