@@ -34,109 +34,108 @@ public class PencilTest {
     @Test
     public void testingWriting() {
         String inputString = "The quick brown fox";
-        
+
         assertEquals(inputString, pencil.write(inputString));
     }
-    
-    @Test
-    public void testingPointDurabilityDecreaseWhenWriting(){
-        String inputString = "this_string_is_33_characters_long";
-        pencil.write(inputString);
-        
-        assertEquals(9967, pencil.getPointDurability());
-        
-    }
-    
-    @Test
-    public void testingPointDurabilityDecreaseWhenWritingCapitalAndLowerCase(){
-        String inputString = "This";
-        pencil.write(inputString);
-        
-        assertEquals(9995, pencil.getPointDurability());
-        
-    }
-    
-    @Test
-    public void testingPointDurabilityWithSpaces(){
-        String inputString = "This string has spaces";
-        pencil.write(inputString);
-        
-        assertEquals(9980, pencil.getPointDurability());
-        
-    }
-    
-    @Test
-    public void testingPointDurabilityWithSpacesAndSymbols(){
-        String inputString = "This string has spaces and symbols!!";
-        pencil.write(inputString);
-        
-        assertEquals(9968, pencil.getPointDurability());
-        
-    }
-    
 
     @Test
-    public void testingWritingMultipleStrings(){
-        String inputString1 =  "The swallows fly";
+    public void testingPointDurabilityDecreaseWhenWriting() {
+        String inputString = "this_string_is_33_characters_long";
+        pencil.write(inputString);
+
+        assertEquals(9967, pencil.getPointDurability());
+
+    }
+
+    @Test
+    public void testingPointDurabilityDecreaseWhenWritingCapitalAndLowerCase() {
+        String inputString = "This";
+        pencil.write(inputString);
+
+        assertEquals(9995, pencil.getPointDurability());
+
+    }
+
+    @Test
+    public void testingPointDurabilityWithSpaces() {
+        String inputString = "This string has spaces";
+        pencil.write(inputString);
+
+        assertEquals(9980, pencil.getPointDurability());
+
+    }
+
+    @Test
+    public void testingPointDurabilityWithSpacesAndSymbols() {
+        String inputString = "This string has spaces and symbols!!";
+        pencil.write(inputString);
+
+        assertEquals(9968, pencil.getPointDurability());
+
+    }
+
+    @Test
+    public void testingWritingMultipleStrings() {
+        String inputString1 = "The swallows fly";
         String inputString2 = " at midnight";
-        
+
         pencil.write(inputString1);
         pencil.write(inputString2);
-        
+
         assertEquals("The swallows fly at midnight", pencil.getStringWritten());
-        
+
     }
-    
+
     @Test
-    public void testingStopWritingWhenPointDurabilityIsZero(){
+    public void testingStopWritingWhenPointDurabilityIsZero() {
         pencil.setPointDurability(10);
         String inputString = "The cicadas";
         pencil.write(inputString);
-        
+
         assertEquals("The cicada ", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingStopWritingWhenPointDurabilityIsZeroButStillWriteSpaces(){
+    public void testingStopWritingWhenPointDurabilityIsZeroButStillWriteSpaces() {
         pencil.setPointDurability(10);
         String inputString = "The cicadas sing at night";
         pencil.write(inputString);
-        
+
         assertEquals("The cicada               ", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingWritingThenSharpeningThePencil(){
+    public void testingWritingThenSharpeningThePencil() {
         pencil.write("The sky is a wonderful shade of blue!");
         pencil.sharpen();
         assertEquals(10000, pencil.getPointDurability());
     }
-    
+
     @Test
-    public void testingLengthDecreaseWhenSharpening(){
+    public void testingLengthDecreaseWhenSharpening() {
         pencil.sharpen();
         assertEquals(9, pencil.getLength());
     }
-    
+
     @Test
-    public void testingPencilDurabilityShouldNotBeRestoredIfLengthIsZero(){
+    public void testingPencilDurabilityShouldNotBeRestoredIfLengthIsZero() {
         pencil.setPointDurability(60);
         pencil.write("This pencil is short!");
         pencil.setLength(0);
         pencil.sharpen();
         assertEquals(41, pencil.getPointDurability());
-        
+
     }
-    
+
     //first step toward erasing
     @Test
-    public void testingCheckingIfWhatIsWrittenContainsAString(){
+    public void testingCheckingIfWhatIsWrittenContainsAString() {
         pencil.write("Yoga is the calming of the fluctuations of the mind.");
         String toErase = "mind";
-        
+
         assertEquals(true, pencil.stringWritten.contains(toErase));
     }
-    
+
     //this test was deprecated by the next
 //    @Test
 //    public void testingErasingStringFromWritingAndLeavingOneSpaceInstead(){
@@ -146,14 +145,13 @@ public class PencilTest {
 //        
 //        assertEquals("The first noble truth is that life is  .", pencil.getStringWritten());
 //    }
-    
     @Test
-    public void testingErasingStringAndLeavingSpacesEqualToLengthOfErasedWord(){
+    public void testingErasingStringAndLeavingSpacesEqualToLengthOfErasedWord() {
         pencil.write("The second noble truth is that suffering is caused by desire.");
         pencil.erase("desire");
         assertEquals("The second noble truth is that suffering is caused by       .", pencil.getStringWritten());
     }
-   
+
     //deprecated as additional funcationality added
 //    @Test
 //    public void testingEraserStartsFromRight(){
@@ -164,65 +162,80 @@ public class PencilTest {
 //        assertEquals("The third noble truth is that there    an end to suffering.", pencil.getStringWritten());
 //        
 //    }
-    
     @Test
-    public void testingEraseStartsFromRightAndFindsAllInstancesOfWordToErase(){
+    public void testingEraseStartsFromRightAndFindsAllInstancesOfWordToErase() {
         String text = "The third noble truth is that there is an end to suffering.";
         pencil.write(text);
         pencil.erase("is");
-        
+
         assertEquals("The third noble truth    that there    an end to suffering.", pencil.getStringWritten());
-        
+
     }
-    
+
     @Test
-    public void testingEraserDurabilityEraserShouldStopWorkingWhenDurabilityIsZero(){
+    public void testingEraserDurabilityEraserShouldStopWorkingWhenDurabilityIsZero() {
         String text = "The fourth noble truth is that there is a path to end suffering: the Eightfold Path.";
         pencil.write(text);
         pencil.setEraserDurability(0);
         pencil.erase("is");
-        
+
         assertEquals("The fourth noble truth is that there is a path to end suffering: the Eightfold Path.", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingEraserShouldStopWorkingWhenDurabilityIsZero(){
+    public void testingEraserShouldStopWorkingWhenDurabilityIsZero() {
         String text = "There once was a man from Nantucket";
         pencil.setEraserDurability(6);
         pencil.write(text);
         pencil.erase("Nantucket");
-        
+
         assertEquals("There once was a man from Nan      ", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingNewBooleanIfErased(){
+    public void testingNewBooleanIfErased() {
         pencil.write("foo bar");
         assertEquals(false, pencil.isEraserUsed());
         pencil.erase("bar");
-        
+
         assertEquals(true, pencil.isEraserUsed());
     }
-    
+
     @Test
-    public void testingInsertingOneLetterWithEditFunction(){
+    public void testingInsertingOneLetterWithEditFunction() {
         pencil.write("abc");
         pencil.erase("c");
         pencil.edit("d", 2);
         //first letter in StringBuilder is index 0
-        
+
         assertEquals("abd", pencil.getStringWritten());
     }
-    
+
     @Test
-    public void testingInsertingStringWithEditFunction(){
+    public void testingInsertingStringWithEditFunction() {
         pencil.write("abcd");
         pencil.erase("cd");
         pencil.edit("ef", 2);
-        
+
         assertEquals("abef", pencil.getStringWritten());
     }
+
+    @Test
+    public void testingInsertingStringLongerThanErasure() {
+        pencil.write("abcd");
+        pencil.erase("cd");
+        pencil.edit("efghij", 2);
+
+        assertEquals("abefghij", pencil.getStringWritten());
+    }
     
-    
-    
+    @Test
+    public void testingEditOverExistingCharacters(){
+        pencil.write("abcde");
+        pencil.erase("cd");
+        pencil.edit("CDE", 2);
+
+        assertEquals("abCD@", pencil.getStringWritten());
+    }
+
 }

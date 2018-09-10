@@ -98,11 +98,23 @@ public class Pencil {
 
             StringBuilder newStringWritten = new StringBuilder(this.stringWritten);
             StringBuilder stringToInsertBuilder = new StringBuilder(stringToInsert);
-            
+
+            //if StringBuilder is not long enough for new text it expands
+            if (newStringWritten.length() < (position + stringToInsert.length())) {
+                newStringWritten.setLength(position + stringToInsert.length());
+            }
+
             //iterates through both StringBuilders to insert edit
             for (int x = position; x < (position + stringToInsert.length()); x++) {
-                newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
-                this.setStringWritten(newStringWritten.toString());
+
+                //checks if character is a space or null
+                if (newStringWritten.charAt(x) == ' ' || newStringWritten.charAt(x) == '\0') {
+                    newStringWritten.setCharAt(x, stringToInsertBuilder.charAt(x - position));
+                    this.setStringWritten(newStringWritten.toString());
+                } else { //writes a @ if it has a value
+                    newStringWritten.setCharAt(x, '@');
+                    this.setStringWritten(newStringWritten.toString());
+                }
 
             }
         }
